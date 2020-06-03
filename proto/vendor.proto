@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message GetVendorInfoRequest {
+    string vendor_name = 1;
+    string ingredient = 2;
+}
+
+message GetVendorInfoReply {
+    int32 quantity_available = 1;
+    int32 price = 2;
+}
+
+service FoodVendorService {
+    rpc GetVendorInfo (GetVendorInfoRequest) return (GetVendorInfoReply) {}
+}

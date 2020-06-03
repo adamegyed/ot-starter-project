@@ -1,4 +1,4 @@
-# Map each service to a url pattern
+# Maps routes to the different services in the app engine
 dispatch:
 
   - url: "*/food-finder/*"

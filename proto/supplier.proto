@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ListVendorsRequest {
+    string ingredient = 1;
+}
+
+message ListVendorsReply {
+    repeated string vendors = 1;
+}
+
+service FoodSupplierService {
+    rpc ListVendors (ListVendorsRequest) returns (ListVendorsReply) {}
+}

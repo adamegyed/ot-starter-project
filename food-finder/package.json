@@ -1,5 +1,5 @@
 {
-  "name": "food-vendor",
+  "name": "food-finder",
   "version": "1.0.0",
   "main": "build/index.js",
   "repository": "git@github.com:adamegyed/ot-starter-project.git",
@@ -35,7 +35,6 @@
     "compile": "yarn run build",
     "fix": "gts fix",
     "pretest": "yarn run compile",
-    "posttest": "yarn run check",
-    "deploy": "gcloud beta app deploy"
+    "posttest": "yarn run check"
   }
 }

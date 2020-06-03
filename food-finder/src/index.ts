@@ -3,7 +3,7 @@ import * as restify from 'restify';
 const server = restify.createServer();
 const port = 8080;
 
-server.get('/', (req, res) => {
+server.get('/food-finder', (req, res) => {
   res.send({
     field: 'value',
   });
