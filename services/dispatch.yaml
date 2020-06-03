@@ -1,0 +1,11 @@
+# Map each service to a url pattern
+dispatch:
+
+  - url: "*/food-finder/*"
+    service: food-finder
+
+  - url: "*/food-supplier/*"
+    service: food-supplier
+
+  - url: "*/food-vendor/*"
+    service: food-vendor
