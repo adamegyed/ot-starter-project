@@ -3,9 +3,9 @@ import * as restify from 'restify';
 const server = restify.createServer();
 const port = 8080;
 
-server.get('/food-vendor', (req, res) => {
+server.get('/food-vendor/healthcheck', (req, res) => {
   res.send({
-    field: 'value',
+    status: 'OK',
   });
 });
 
