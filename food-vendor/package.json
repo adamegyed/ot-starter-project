@@ -35,6 +35,7 @@
     "compile": "yarn run build",
     "fix": "gts fix",
     "pretest": "yarn run compile",
-    "posttest": "yarn run check"
+    "posttest": "yarn run check",
+    "deploy": "gcloud beta app deploy food-vendor.yaml"
   }
 }

@@ -1,8 +1,7 @@
 # Maps routes to the different services in the app engine
 dispatch:
 
-  - url: "*/food-finder/*"
-    service: food-finder
+# Food finder is the default service and thus doesn't require an entry here
 
   - url: "*/food-supplier/*"
     service: food-supplier

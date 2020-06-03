@@ -9,6 +9,12 @@ server.get('/food-supplier', (req, res) => {
   });
 });
 
+server.get('/food-supplier/longer-url', (req, res) => {
+  res.send({
+    matching: 'value',
+  });
+});
+
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
