@@ -7,13 +7,13 @@ import {
 } from './proto/supplier_grpc_pb';
 
 // Defines handler methods for the FoodSupplierService defined in protos/supplier.proto
-class FoodSupplierServer implements IFoodSupplierServiceServer {
+export default class FoodSupplierServer implements IFoodSupplierServiceServer {
   listVendors(
     call: grpc.ServerUnaryCall<ListVendorsRequest>,
     callback: grpc.sendUnaryData<ListVendorsReply>
   ) {
     const ingredient: string = call.request.getIngredient();
-    let reply: ListVendorsReply = new ListVendorsReply();
+    let reply = new ListVendorsReply();
     VendorList.forEach((supportedFoods: string[], vendorName: string) => {
       if (supportedFoods.includes(ingredient)) {
         reply.addVendors(vendorName);
@@ -22,5 +22,3 @@ class FoodSupplierServer implements IFoodSupplierServiceServer {
     callback(null, reply);
   }
 }
-
-export default FoodSupplierServer;

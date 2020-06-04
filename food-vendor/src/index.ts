@@ -1,14 +1,18 @@
-import * as restify from 'restify';
+import grpc from 'grpc';
+import FoodVendorServer from './food_vendor_server';
+import {
+  IFoodVendorServiceServer,
+  FoodVendorServiceService,
+} from './proto/vendor_grpc_pb';
 
-const server = restify.createServer();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
-server.get('/food-vendor/healthcheck', (req, res) => {
-  res.send({
-    status: 'OK',
-  });
-});
-
-server.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+//Initialize gRPC Server
+const grpcServer = new grpc.Server();
+grpcServer.addService<IFoodVendorServiceServer>(
+  FoodVendorServiceService,
+  new FoodVendorServer()
+);
+grpcServer.bind(`localhost:${port}`, grpc.ServerCredentials.createInsecure());
+grpcServer.start();
+console.log(`Food Vendor service listening on port ${port}`);
