@@ -1,0 +1,2 @@
+# Note about protobufs in this project
+Due to the nature of the gcloud uploader and the App Engine folder structure, the protobuf files, which include the gRPC service definitions, must also be replicated in the service-specific folders.

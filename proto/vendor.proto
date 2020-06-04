@@ -11,5 +11,5 @@ message GetVendorInfoReply {
 }
 
 service FoodVendorService {
-    rpc GetVendorInfo (GetVendorInfoRequest) return (GetVendorInfoReply) {}
+    rpc GetVendorInfo (GetVendorInfoRequest) returns (GetVendorInfoReply) {}
 }
