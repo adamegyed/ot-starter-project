@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Food Finder</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="heading">
+      <h1>Food Finder</h1>
+    </div>
+    <div class="searchbar">
+      <form action="#" onsubmit="search(); return false;" autocomplete="off">
+        <input
+          type="search"
+          id="searchinput"
+          class="searchinput"
+          placeholder="Search for an ingredient..."
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <div class="results">
+      <table id="resultstable">
+        <thead>
+          <th scope="col">Vendor</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="errormsg" class="errormsg"></div>
+  </body>
+  <script type="text/javascript">
+    function search() {
+      clearTable();
+      let ingredient = document.getElementById('searchinput').value;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          try {
+            let resp = JSON.parse(this.responseText);
+            if (this.status == 200) {
+              let table = document.getElementById('resultstable');
+              if (resp.vendors.length == 0) {
+                document.getElementById('errormsg').innerHTML =
+                  'No matching vendors found.';
+                table.style.display = 'none';
+                return;
+              }
+              document.getElementById('errormsg').innerHTML = '';
+              table.style.display = 'table';
+              resp.vendors.forEach(vendorData => {
+                let row = table.insertRow();
+                row.insertCell().innerHTML = vendorData.name;
+                row.insertCell().innerHTML = vendorData.quantity;
+                row.insertCell().innerHTML = parsePrice(vendorData.price);
+              });
+            } else {
+              // Error
+              let error = resp.Error;
+              if (typeof error != 'string') {
+                error = JSON.stringify(error);
+              }
+              document.getElementById('errormsg').innerHTML = error;
+              document.getElementById('resultstable').style.display = 'none';
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      };
+      xhr.open('GET', 'search?ingredient=' + ingredient, true);
+      xhr.send();
+    }
+    function clearTable() {
+      let table = document.getElementById('resultstable');
+      for (let i = table.rows.length - 1; i > 0; i -= 1) {
+        table.deleteRow(i);
+      }
+    }
+    function parsePrice(price) {
+      const money = price * 0.01;
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(money);
+    }
+    function autoRun() {
+      // Hides table headings until elements are inserted
+      document.getElementById('resultstable').style.display = 'none';
+    }
+    autoRun();
+  </script>
+</html>

@@ -33,7 +33,7 @@
     "build": "npx tsc -p .",
     "build-proto": "sh ../scripts/build-protos.sh ../proto/.",
     "start": "node .",
-    "dev:start": "yarn run build && yarn run start",
+    "dev:start": "yarn run build && NODE_ENV=DEVELOPMENT yarn start",
     "gcp-build": "yarn run build",
     "check": "gts check",
     "clean": "gts clean",

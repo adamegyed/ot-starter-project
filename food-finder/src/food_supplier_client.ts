@@ -26,7 +26,11 @@ export default class FoodSupplierClient {
           if (err) {
             reject(err);
           }
-          resolve(response.getVendorsList());
+          if (response) {
+            resolve(response.getVendorsList());
+          } else {
+            reject(null);
+          }
         }
       );
     });

@@ -29,15 +29,19 @@ export default class FoodVendorClient {
       this.client.getVendorInfo(
         getVendorInfoRequest,
         (err: grpc.ServiceError | null, response: GetVendorInfoReply) => {
-          if (err) {
+          if (err || !response) {
             reject(err);
           }
-          resolve({
-            name: vendorName,
-            ingredient: ingredient,
-            quantity: response.getQuantityAvailable(),
-            price: response.getPrice(),
-          });
+          if (response) {
+            resolve({
+              name: vendorName,
+              ingredient: ingredient,
+              quantity: response.getQuantityAvailable(),
+              price: response.getPrice(),
+            });
+          } else {
+            reject(null);
+          }
         }
       );
     });
