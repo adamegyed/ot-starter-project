@@ -1,6 +1,7 @@
 import * as restify from 'restify';
 import FoodSupplierClient from './food_supplier_client';
 import FoodVendorClient from './food_vendor_client';
+import GetGoogleCredentials from './get_google_auth';
 
 const server = restify.createServer();
 const port = process.env.PORT || 8080;
@@ -10,21 +11,23 @@ const isDev: boolean = process.env.NODE_ENV === 'DEVELOPMENT';
 // Configure connection to other services based on environment
 const foodSupplierAddress = isDev
   ? 'localhost'
-  : 'food-supplier-dot-adam-starter-project.wl.r.appspot.com';
-const foodSupplierPort = isDev ? 8082 : 80;
+  : 'food-supplier-taij2wfjxq-uw.a.run.app';
+const foodSupplierPort = isDev ? 8082 : 443;
 const foodVendorAddress = isDev
   ? 'localhost'
-  : 'food-vendor-dot-adam-starter-project.wl.r.appspot.com';
-const foodVendorPort = isDev ? 8083 : 80;
+  : 'food-vendor-taij2wfjxq-uw.a.run.app';
+const foodVendorPort = isDev ? 8083 : 443;
 
 // Construct and initialize clients
 const foodSupplierClient = new FoodSupplierClient(
   foodSupplierAddress,
-  foodSupplierPort
+  foodSupplierPort,
+  !isDev // Should be secure when not in development mode
 );
 const foodVendorClient = new FoodVendorClient(
   foodVendorAddress,
-  foodVendorPort
+  foodVendorPort,
+  !isDev // Should be secure when not in dev mode
 );
 
 // Enable URL parameters
@@ -53,7 +56,10 @@ server.get('/food-finder/search', async (req, res) => {
 
     // Gather list of viable vendors from the Food-Supplier service
     const vendorList: string[] = await foodSupplierClient.getVendors(
-      ingredient
+      ingredient,
+      !isDev
+        ? await GetGoogleCredentials(`https://${foodSupplierAddress}`)
+        : undefined
     );
 
     // Short-circuit if no vendors required
@@ -63,8 +69,11 @@ server.get('/food-finder/search', async (req, res) => {
     }
 
     // Send request to Food-Vendor service for each valid vendor for their stock and price of the given ingredient
+    const vendorAuthToken = !isDev
+      ? await GetGoogleCredentials(`https://${foodVendorAddress}`)
+      : undefined;
     let vendorRequests = vendorList.map(vendorName =>
-      foodVendorClient.GetVendorInfo(vendorName, ingredient)
+      foodVendorClient.GetVendorInfo(vendorName, ingredient, vendorAuthToken)
     );
 
     // Run requests in parallel

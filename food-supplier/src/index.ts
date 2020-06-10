@@ -13,6 +13,6 @@ grpcServer.addService<IFoodSupplierServiceServer>(
   FoodSupplierServiceService,
   new FoodSupplierServer()
 );
-grpcServer.bind(`localhost:${port}`, grpc.ServerCredentials.createInsecure());
+grpcServer.bind(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure());
 grpcServer.start();
 console.log(`Food Supplier service listening on port ${port}`);
