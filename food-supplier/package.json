@@ -39,6 +39,7 @@
     "fix": "gts fix",
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
-    "deploy": "yarn run build-proto && gcloud beta app deploy food-supplier.yaml"
+    "build-container": "gcloud builds submit --tag gcr.io/adam-starter-project/food-supplier",
+    "deploy": "gcloud run deploy --image gcr.io/adam-starter-project/food-supplier --platform managed"
   }
 }
