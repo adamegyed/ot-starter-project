@@ -1,3 +1,5 @@
+import * as traceAgent from '@google-cloud/trace-agent';
+traceAgent.start();
 import * as grpc from 'grpc';
 import FoodSupplierServer from './food_supplier_server';
 import {

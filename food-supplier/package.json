@@ -10,6 +10,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^5.0.0",
     "@types/google-protobuf": "^3.7.2",
     "@types/restify": "^8.4.2",
     "eslint-plugin-node": "^11.1.0",

@@ -1,3 +1,5 @@
+import * as traceAgent from '@google-cloud/trace-agent';
+traceAgent.start();
 import * as restify from 'restify';
 import FoodSupplierClient from './food_supplier_client';
 import FoodVendorClient from './food_vendor_client';

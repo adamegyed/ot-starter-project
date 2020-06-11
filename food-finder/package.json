@@ -10,6 +10,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^5.0.0",
     "@types/google-protobuf": "^3.7.2",
     "@types/promise.allsettled": "^1.0.3",
     "@types/request-promise": "^4.1.46",
