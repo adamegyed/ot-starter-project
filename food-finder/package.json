@@ -10,6 +10,12 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.3.0",
+    "@opentelemetry/api": "^0.8.3",
+    "@opentelemetry/core": "^0.8.3",
+    "@opentelemetry/node": "^0.8.3",
+    "@opentelemetry/plugin-http": "^0.8.3",
+    "@opentelemetry/tracing": "^0.8.3",
     "@types/google-protobuf": "^3.7.2",
     "@types/promise.allsettled": "^1.0.3",
     "@types/request-promise": "^4.1.46",
@@ -19,6 +25,7 @@
     "grpc-tools": "^1.9.0",
     "grpc_tools_node_protoc_ts": "^4.0.0",
     "gts": "^2.0.2",
+    "prettier": "^2.0.5",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "restify": "^8.5.1"

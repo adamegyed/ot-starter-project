@@ -1,4 +1,8 @@
+import { TraceExporter } from '@google-cloud/opentelemetry-cloud-trace-exporter';
+import { NodeTracerProvider } from '@opentelemetry/node';
+import { BatchSpanProcessor } from '@opentelemetry/tracing';
 import * as restify from 'restify';
+
 import FoodSupplierClient from './food_supplier_client';
 import FoodVendorClient from './food_vendor_client';
 import GetGoogleCredentials from './get_google_auth';
