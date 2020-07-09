@@ -15,6 +15,7 @@
     "@opentelemetry/core": "^0.8.3",
     "@opentelemetry/node": "^0.8.3",
     "@opentelemetry/plugin-http": "^0.8.3",
+    "@opentelemetry/resources": "^0.8.3",
     "@opentelemetry/tracing": "^0.8.3",
     "@types/google-protobuf": "^3.7.2",
     "@types/promise.allsettled": "^1.0.3",

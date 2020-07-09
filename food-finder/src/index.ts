@@ -1,6 +1,7 @@
 import { TraceExporter } from '@google-cloud/opentelemetry-cloud-trace-exporter';
 import { NodeTracerProvider } from '@opentelemetry/node';
 import { BatchSpanProcessor } from '@opentelemetry/tracing';
+import { Resource, detectResources } from '@opentelemetry/resources';
 import * as restify from 'restify';
 
 import FoodSupplierClient from './food_supplier_client';
