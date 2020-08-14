@@ -11,11 +11,11 @@ const isDev: boolean = process.env.NODE_ENV === 'DEVELOPMENT';
 // Configure connection to other services based on environment
 const foodSupplierAddress = isDev
   ? 'localhost'
-  : 'food-supplier-taij2wfjxq-uw.a.run.app';
+  : 'egyed-foodsupplier-ax4wfavwsa-uw.a.run.app';
 const foodSupplierPort = isDev ? 8082 : 443;
 const foodVendorAddress = isDev
   ? 'localhost'
-  : 'food-vendor-taij2wfjxq-uw.a.run.app';
+  : 'egyed-foodvendor-ax4wfavwsa-uw.a.run.app';
 const foodVendorPort = isDev ? 8083 : 443;
 
 // Construct and initialize clients

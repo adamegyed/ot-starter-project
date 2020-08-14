@@ -105,3 +105,6 @@ dist
 
 # Compiled JS
 build
+
+#Custom repo
+src/sqlcommenter

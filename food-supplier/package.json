@@ -39,7 +39,7 @@
     "fix": "gts fix",
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
-    "build-container": "gcloud builds submit --tag gcr.io/adam-starter-project/food-supplier",
-    "deploy": "gcloud run deploy --image gcr.io/adam-starter-project/food-supplier --platform managed"
+    "build-container": "gcloud builds submit --tag gcr.io/cloud-debugging/egyed-foodsupplier",
+    "deploy": "gcloud run deploy --image gcr.io/cloud-debugging/egyed-foodsupplier --platform managed"
   }
 }
